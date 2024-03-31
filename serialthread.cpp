@@ -81,7 +81,7 @@ void SerialThread::run(){
 
             emit dataAvailable();
         }
-        msleep(10);
+        msleep(1);
     }
 }
 
@@ -91,6 +91,23 @@ QQueue<char> SerialThread::getData(){
     _array.clear();
     return copy;
 }
+
+int SerialThread::sendByte(uint8_t byte){
+    if(!_isOpened)     return 1;
+    if(!_isConfigured) return 2;
+
+    DWORD bytesWritten;
+    if (!WriteFile(_serial, &byte, sizeof(byte), &bytesWritten, NULL)) {
+        return 8;
+    }
+
+    if(bytesWritten!=sizeof(byte)){
+        return 9;
+    }
+
+    return 0;
+}
+
 
 QString SerialThread::getErrorMsg(int error){
     QString msg = "";

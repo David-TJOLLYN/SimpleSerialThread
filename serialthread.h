@@ -26,6 +26,9 @@ public:
 
     QString getErrorMsg(int error);
 
+public slots:
+    int sendByte(uint8_t byte);
+
 signals:
     void dataAvailable();
 
@@ -51,6 +54,9 @@ private:
  * 5 : Fail to get current COM port settings
  * 6 : Fail to set COM port settings
  * 7 : Fail reading from COM port
+ * 8 : Fail writing in COM port
+ * 9 : Error while writin in COM port
+ *
 */
 
 #endif // SERIALTHREAD_H

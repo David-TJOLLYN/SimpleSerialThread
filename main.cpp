@@ -22,6 +22,9 @@ int main(int argc, char *argv[]) {
 
     serial->start();
 
+    serial->sendByte(0x61);
+    qDebug()<<"Send byte 0x61";
+
     return a.exec();
 }
 

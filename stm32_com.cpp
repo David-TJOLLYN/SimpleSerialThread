@@ -28,8 +28,7 @@ void STM32_COM::analyseData(){
         if(valid){
             int add = msb>>4;
             int val = (msb & 0x0F)<<8 | lsb;
-            int raw = (msb<<8|lsb);
-            std::cout<<"0x"<<add<<" : "<<val<<"  \t"<<raw<<"\n";
+            std::cout<<"0x"<<add<<" : "<<val<<"\n";
             idx++;
         }
     }
