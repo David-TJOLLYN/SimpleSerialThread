@@ -21,22 +21,17 @@ void STM32_COM::analyseData(){
 
         if(lsb == 255 && msb == 255){
             valid = true;
-            idx++;
+            _rawDatas.remove(0,idx+1);
+            idx=0;
             continue;
         }
 
         if(valid){
             int add = msb>>4;
             int val = (msb & 0x0F)<<8 | lsb;
-            std::cout<<"0x"<<add<<" : "<<val<<"\n";
+            _datas.append(val);
+            emit newData(val);
             idx++;
         }
     }
-
-
-    /*
-    std::cout<<"Data received : ";
-    while(!queue.isEmpty()) std::cout<<queue.dequeue();
-    std::cout<<"\n";
-    */
 }

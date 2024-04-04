@@ -13,8 +13,11 @@ public:
 public slots:
     void analyseData();
 
+signals:
+    void newData(int val);
+
 private:
-    QList<char> _rawDatas;
+    QQueue<char> _rawDatas;
     QList<int> _datas;
     int idx;
     bool valid;
